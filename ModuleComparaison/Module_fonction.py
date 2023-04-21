@@ -34,7 +34,7 @@ def Count(i):
 
 
 ###Affichage nomrbe de vie###
-def Vie(int_resu,statut):
+def Vie(int_resu,statut,prix):
     vie = 7
     if statut:
         if int_resu < vie:
@@ -45,6 +45,8 @@ def Vie(int_resu,statut):
             print("")
             print(f"Perdu !")
             print(f"Tu n'as plus de vie")
+            print("")
+            print(f"Le prix était {prix}€")
             return False
     else:
         print(f"Nombre de vie utilisé {int_resu}")

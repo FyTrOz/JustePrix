@@ -28,4 +28,4 @@ def FonctionMainModule(ITEM_OBJECT):
         w_compare = CompareNOMBRE(nbdemande, ITEM_OBJECT.prix)
         Count_VIE = Count(i)
         i = Count_VIE
-        w_comptage = Vie(Count_VIE, w_compare)
+        w_comptage = Vie(Count_VIE, w_compare, ITEM_OBJECT.prix)
