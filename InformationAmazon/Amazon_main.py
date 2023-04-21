@@ -21,7 +21,7 @@ URL_BASE = "https://www.amazon.fr/"
 
 
 
-###Appel des fonctions###
+###Appel des fonctions### LA
 
 def FonctionMainAmazon():
     Soup_MAINPAGE = InfoPAGE(URL)
