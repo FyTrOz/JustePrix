@@ -59,7 +59,8 @@ def DlIMAGE(url):
     r=requests.get(url)
     content = r.content
     file = "imgITEM.jpg"
-    file_path = "/config/home/PycharmProjects/JustePrix/Download/imgITEM.jpg"
+    file_path = "Download/imgITEM.jpg"
+    #file_path = "/config/home/PycharmProjects/JustePrix/Download/imgITEM.jpg"
     file = open(file_path, "wb")
     file.write(content)
 

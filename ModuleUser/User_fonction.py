@@ -129,6 +129,7 @@ def ConnexionBASE():
                             if player["pin"] == str_playerPin_give:
                                 foundPin = player
                                 w_playerPin = False
+                                break
                             else:
                                 print("Pin incorrect")
                     else:
@@ -146,6 +147,7 @@ def ConnexionBASE():
             print("Joueur introuvable ou code PIN incorrect.")
 
         return(foundPlayer["nom"])
+    i = False
 
-        fileObject.close()
-        fileObject.close()
+    fileObject.close()
+    fileObject.close()
