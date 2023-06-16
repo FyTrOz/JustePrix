@@ -11,6 +11,21 @@ class Character:
         self.last_score = 0
 
 
+def ChoixUSER():
+    i = True
+    while i:
+        print("Dans un premier temps, Connecte toi ou Inscrit toi !")
+        request = input("Connexion ou Inscription ('c'/'i') : ")
+        if request == "Connexion" or request == "connexion" or request == "c":
+            return "connexion"
+        elif request == "Inscription" or request == "inscription" or request == "i":
+            return "inscription"
+        elif request == "l":
+            return "lire"
+        else:
+            print("Veuillez bien ecrire")
+            print("--------------------")
+
 def LectureBASE():
     try:
         print("Entrée dans la base")
@@ -22,9 +37,11 @@ def LectureBASE():
                 print(f"{key}: {value}")
             print()  # imprime une ligne vide entre chaque dictionnaire
         fileObject.close()
+
     except:
         print("Vous ne pouvez pas lire car le fichier et vide ou inexistant")
         pass
+
 
 
 
@@ -43,7 +60,7 @@ def EcritureBASE():
         pin_give = input("Quel est ton code PIN ? : ")
         if pin_give.isnumeric():
             int_pin_give = int(pin_give)
-            print(f"Votre code PIN est le : '{int_pin_give}'")
+            print(f"Votre nom est {str_nom_give} et votre code PIN est le : '{pin_give}'")
             w_pin = False
         else:
             print("Il faut renseigner un nombre")
@@ -67,62 +84,68 @@ def EcritureBASE():
     jsonFile = open("data.json", "w")
     jsonFile.write(jsonContent)
     jsonFile.close()
-    print("Fichier pret")
+    print("Inscription Validé")
+    print("------------------")
 
 
 
 def ConnexionBASE():
-    fileObject = open("data.json", "r")
-    jsonContent = fileObject.read().strip()
-    playerList = json.loads(jsonContent)
+    i = True
+    while i:
+        fileObject = open("data.json", "r")
+        jsonContent = fileObject.read().strip()
+        playerList = json.loads(jsonContent)
 
-    # Demande des informations
+        # Demande des informations
+        foundPlayer = None
+        foundPin = None
 
-    foundPlayer = None
-    foundPin = None
-
-    w_playerName = True
-    while w_playerName:
-        playerName_give = input("Entrez le nom du joueur : ")
-        if not playerName_give.isnumeric():
-            str_playerName_give = str(playerName_give)
-            trouver = False
-            for player in playerList:
-                if player["nom"] == str_playerName_give:
-                    foundPlayer = player
-                    trouver = True
-            if not trouver:
-                print("Le joueur est introuvable")
+        w_playerName = True
+        while w_playerName:
+            playerName_give = input("Entrez le nom du joueur : ")
+            if not playerName_give.isnumeric():
+                str_playerName_give = str(playerName_give)
+                trouver = False
+                for player in playerList:
+                    if player["nom"] == str_playerName_give:
+                        foundPlayer = player
+                        trouver = True
+                        break
+                if not trouver:
+                    print("Le joueur est introuvable")
+                else:
+                    w_playerName = False
             else:
-                w_playerName = False
-        else:
-            print("Il faut renseigner une chaine de caractère")
+                print("Il faut renseigner une chaine de caractère")
 
 
-    if foundPlayer != None:
-        try:
+        if foundPlayer != None:
             w_playerPin = True
             while w_playerPin:
-                playerPin_give = input("Entrez le code PIN du joueur : ")
-                if playerPin_give.isnumeric():
-                    str_playerPin_give = str(playerPin_give)
-                    for player in playerList:
-                        if player["pin"] == str_playerPin_give:
-                            foundPin = player
-                    w_playerPin = False
-                else:
-                    print("Il faut renseigner un nombre pour le code pin")
-        except:
-            print("Pin incorrect")
+                    playerPin_give = input("Entrez le code PIN du joueur : ")
+                    if playerPin_give.isnumeric():
+                        str_playerPin_give = str(playerPin_give)
+                        for player in playerList:
+                            if player["pin"] == str_playerPin_give:
+                                foundPin = player
+                                w_playerPin = False
+                            else:
+                                print("Pin incorrect")
+                    else:
+                        print("Il faut renseigner un nombre pour le code pin")
 
+        if foundPin:
+            print("-------------------------")
+            print("Récapitulatif du compte :")
+            print("Nom : ", foundPlayer["nom"])
+            print("Record : ", foundPlayer["record"])
+            print("Dernier score : ", foundPlayer["last_score"])
+            print("-------------------------")
 
-    if foundPin:
-        print("Nom : ", foundPlayer["nom"])
-        print("Record : ", foundPlayer["record"])
-        print("Dernier score : ", foundPlayer["last_score"])
-    else:
-        print("Joueur introuvable ou code PIN incorrect.")
+        else:
+            print("Joueur introuvable ou code PIN incorrect.")
 
-    fileObject.close()
+        return(foundPlayer["nom"])
 
-    fileObject.close()
+        fileObject.close()
+        fileObject.close()

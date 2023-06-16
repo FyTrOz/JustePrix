@@ -20,9 +20,13 @@ def CompareNOMBRE(nbrequest,nbprix):
         return False
     else:
         if nbrequest > nbprix:
+            print(f"-----------")
             print(f"Moins grand")
+            print(f"-----------")
         else:
+            print(f"----------")
             print(f"Plus grand")
+            print(f"----------")
         return True
 
 

@@ -8,20 +8,16 @@ from ModuleComparaison.Module_fonction import RequestNOMBRE, CompareNOMBRE, Coun
 
 ###Appel des fonctions###
 
-def FonctionMainModule(ITEM_OBJECT):
+def FonctionMainModule(ITEM_OBJECT, Nom):
     i = 0
     tabnom = []
     w_compare = True
     w_comptage = True
-
-    print(f"Bienvenue dans le juste prix !")
-    print(f"A toi de trouver le prix de de l'article qui va apparaitre")
-    chaine_nom = RequestNOM(tabnom)
     os.system('clear')
     while w_compare and w_comptage:
         print(f"L'article à chercher est le : {ITEM_OBJECT.description}")
         print(f"Voici une image de l'article : {ITEM_OBJECT.image_url}")
-        AffichageNOM(tabnom)
+        AffichageNOM(Nom)
         nbdemande = RequestNOMBRE()
         os.system('clear')
         print(f"Le nombre précédent est : {nbdemande}")
